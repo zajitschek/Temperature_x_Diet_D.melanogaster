@@ -1,0 +1,37 @@
+---
+title: "survival"
+author: "zajitschek"
+date: "2020-09-03"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Load libraries (all libraries have to be previously installed)
+```{r load-libraries, message=FALSE, warning=FALSE, results="hide"}
+library(dplyr)      # data structure
+library(reshape2)   # data structure
+library(rcompanion) # mean and median (+- bootstrapped CI)
+library(ggplot2)    # plot
+library(survminer)  # plot
+library(survival)   # survival analysis
+library(coxme)      # Mixed-effects Cox proportional hazard model
+```
+
+## Load survival data
+```{r import-survival}
+survival <- read.csv("data/survival.csv", fileEncoding="UTF-8-BOM")
+survival$diet <- as.factor(survival$diet)
+survival$vial_id <- as.factor(survival$vial_id)
+survival$rep <- as.factor(survival$rep)
+head(survival)
+```
+
+## Explore survival data
+```{r explore-survival}
+melted <- melt(survival, id.vars = c("diet", "temperature", "sex"), measure.vars = "lifespan")
+melted <- melted[ ,c(1:3,5)]  #select all, except variable 'variable'
+names(melted)[names(melted)=="value"] <- "lifespan"
+summary_lifespan <- dplyr::summarise(group_by(melted, sex, diet, temperature), mean = mean(lifespan), sd = sd(lifespan), median = median(lifespan))
+summary_lifespan %>% print(n = Inf)
+```

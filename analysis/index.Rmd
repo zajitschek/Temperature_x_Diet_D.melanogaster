@@ -1,5 +1,5 @@
 ---
-title: "Home"
+title: "Sex-specific effects of diet and temperature stress in flies"
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:
@@ -8,4 +8,9 @@ editor_options:
   chunk_output_type: console
 ---
 
-Welcome to my research website.
+This website contains links to all R code used for the manuscript *Dietary restriction does not extend lifespan under increased stress: sex-specific effects of diet and temperature in fruit flies*, authored by Zajitschek, F, Zajitschek, SRK, Vasconcelos, ACO & Bonduriansky, R. 2020.
+
+# Survival (females and males)
+Click this link **[Survival analysis](survival.html)** to see the complete commented survival analyses.
+
+# Behaviour (males)
